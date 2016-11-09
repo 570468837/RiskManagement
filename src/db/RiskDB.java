@@ -21,6 +21,7 @@ public class RiskDB {
 	static String sql_update_risk = "update `risk` "
 								  + "set name = ?, content = ?, possibility = ?, influence = ?, threshold = ?, tracer = ? "
 								  + "where id = ?;";
+	static String sql_get_by_yaoid = "select * from `risk` where yaoid = ?;";
 	
 	public void insertRisk(Risk risk) throws SQLException {
 		Connection conn = DatabaseUtils.getConnection();
@@ -122,4 +123,26 @@ public class RiskDB {
 		pstmt.close();
 		DatabaseUtils.closeConnection(conn);
 	}
+	
+	public Risk getRiskByYaoId(String id) throws SQLException {
+		Connection conn = DatabaseUtils.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(sql_get_by_yaoid);
+		pstmt.setString(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		Risk risk = null;
+		while(rs.next()) {
+			String name = rs.getString("name");
+			String content = rs.getString("content");
+			String possibility = rs.getString("possibility");
+			String influence = rs.getString("influence");
+			String threshold = rs.getString("threshold");
+			String submitterId = rs.getString("submitter");
+			String tracerId = rs.getString("tracer");
+			String requirementId = rs.getString("requirementId");
+			risk = new Risk(id, name, content, possibility, influence, threshold, submitterId, tracerId, requirementId);
+			break;
+		}
+		return risk;
+	}
+	
 }

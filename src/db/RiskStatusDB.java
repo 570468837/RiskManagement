@@ -7,19 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import model.*;
 import utils.DatabaseUtils;
-
 
 public class RiskStatusDB {
 
 	static String sql_insert_riskStatus = "insert into `riskstatus` values(null, ?, ?, ?, ?, ?);";
 	static String sql_get_by_id = "select * from `riskstatus` where id = ?;";
-	static String sql_get_by_risk = "select * "
-								  + "from `riskstatus` rs, `risk` r "
-								  + "where rs.riskid = ? and r.id = rs.riskid;";
-	
+	static String sql_get_by_risk = "select * " + "from `riskstatus` rs, `risk` r "
+			+ "where rs.riskid = ? and r.id = rs.riskid;";
+	static String sql_get_by_yaoid = "select * " + "from `riskstatus` rs, `risk` r "
+			+ "where r.yaoid = ? and r.id = rs.riskid;";
+	static String sql_update_status = "update `risk` r, `riskstatus` rs set rs.state = ?, rs.description = ? "
+			+ "where r.yaoid = ? and r.id = rs.riskid;";
+
 	public void insertRiskStatus(RiskStatus status) throws SQLException {
 		Connection conn = DatabaseUtils.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql_insert_riskStatus);
@@ -32,14 +33,14 @@ public class RiskStatusDB {
 		pstmt.close();
 		DatabaseUtils.closeConnection(conn);
 	}
-	
+
 	public RiskStatus getRiskStatusById(String id) throws SQLException {
 		Connection conn = DatabaseUtils.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql_get_by_id);
 		pstmt.setString(1, id);
 		ResultSet rs = pstmt.executeQuery();
 		RiskStatus status = null;
-		while(rs.next()) {
+		while (rs.next()) {
 			String state = rs.getString("state");
 			String description = rs.getString("description");
 			String riskId = rs.getString("riskid");
@@ -50,14 +51,35 @@ public class RiskStatusDB {
 		}
 		return status;
 	}
-	
+
+	public List<RiskStatus> getRiskStatusByYaoId(String yaoid) throws SQLException {
+		Connection conn = DatabaseUtils.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(sql_get_by_yaoid);
+		pstmt.setString(1, yaoid);
+		ResultSet rs = pstmt.executeQuery();
+		List<RiskStatus> statuses = new ArrayList<RiskStatus>();
+		while (rs.next()) {
+			String id = rs.getString("rs.id");
+			String state = rs.getString("rs.state");
+			String description = rs.getString("rs.description");
+			String riskId = rs.getString("rs.riskid");
+			String createTime = rs.getString("rs.createtime");
+			String recorderId = rs.getString("rs.recorder");
+			String riskYaoId = rs.getString("r.yaoid");
+			RiskStatus status = new RiskStatus(id, state, description, riskId, createTime, recorderId);
+			status.setRiskYaoId(riskYaoId);
+			statuses.add(status);
+		}
+		return statuses;
+	}
+
 	public List<RiskStatus> getRiskStatusByRisk(String riskId) throws SQLException {
 		Connection conn = DatabaseUtils.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql_get_by_risk);
 		pstmt.setString(1, riskId);
 		ResultSet rs = pstmt.executeQuery();
 		List<RiskStatus> statuses = new ArrayList<RiskStatus>();
-		while(rs.next()) {
+		while (rs.next()) {
 			String id = rs.getString("rs.id");
 			String state = rs.getString("rs.state");
 			String description = rs.getString("rs.description");
@@ -69,5 +91,16 @@ public class RiskStatusDB {
 			statuses.add(status);
 		}
 		return statuses;
+	}
+
+	public void updateRiskStatus(RiskStatus status) throws SQLException {
+		Connection conn = DatabaseUtils.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(sql_update_status);
+		pstmt.setString(1, status.getState());
+		pstmt.setString(2, status.getDescription());
+		pstmt.setString(3, status.getRiskId());
+		pstmt.executeUpdate();
+		pstmt.close();
+		DatabaseUtils.closeConnection(conn);
 	}
 }
