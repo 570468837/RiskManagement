@@ -11,14 +11,24 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 
-public class AjaxAction extends ActionSupport{
-	String result;
+
+public class AjaxAction{
+	private String result;
+	
 	public String fuck() {
 		HttpServletRequest request = ServletActionContext.getRequest(); // 获取request
 		HttpSession session = request.getSession();
-		System.out.println("baby");
 		int gjp=Integer.parseInt(request.getParameter("gjp"));
+		System.out.println(gjp);
 		result="success";
-		return "ajax";
+		return "fuck";
+	}
+	
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 }
