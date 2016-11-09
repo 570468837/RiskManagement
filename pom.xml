@@ -3,7 +3,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>RiskManagement</groupId>
 	<artifactId>RiskManagement</artifactId>
-	<version></version>
 	<packaging>war</packaging>
 	
 	<dependencies>
