@@ -5,7 +5,8 @@ function initData(risk_num){
 		return;
 	}
 	risk_num_global = risk_num;
-	var riskItem = {
+	
+	/*var riskItem = {
 		"riskid": "1.1.1",
 		"content": "由于人手不够，所以可能无法deanline之前完成该项开发",
 		"possibility": "high",
@@ -13,13 +14,33 @@ function initData(risk_num){
 		"trigger": "2016年12月1日",
 		"subscriber": "郭建朋",
 		"tracker": "郭建朋"
-	}
-	document.getElementById("item_content").innerText  =  riskItem.content ;
-	document.getElementById("item_possibility").innerText  =  riskItem.possibility ;
-	document.getElementById("item_impact").innerText  =  riskItem.impact ;
-	document.getElementById("item_trigger").innerText  =  riskItem.trigger ;
-	document.getElementById("item_subscriber").innerText  =  riskItem.subscriber ;
-	document.getElementById("item_tracker").innerText  =  riskItem.tracker;
+	} */
+	//查询风险条目
+	$.ajax({
+			type : "POST",
+			url : "../json/risk_entry.action",
+			data : {
+				id : risk_num
+			},
+			dataType : "json",
+			success : function(data, status) {
+				var riskItem = JSON.parse(data.result);
+				document.getElementById("item_content").innerText  =  riskItem.content ;
+				document.getElementById("item_possibility").innerText  =  riskItem.possibility ;
+				document.getElementById("item_impact").innerText  =  riskItem.impact ;
+				document.getElementById("item_trigger").innerText  =  riskItem.trigger ;
+				document.getElementById("item_subscriber").innerText  =  riskItem.subscriber ;
+				document.getElementById("item_tracker").innerText  =  riskItem.tracker;
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus);
+				alert("网络繁忙，请稍后再试");
+			}
+		});
+		
+	
 
 	/*var riskState= {
 		"riskid": "1.1.1",
@@ -120,6 +141,14 @@ function getTree() {
 				$('#tree').treeview({
 					data: returnData
 				});
+				$('#tree').on('nodeSelected', function(event, data) {
+					console.log(data);
+					console.log(data.text);
+					var risk = data.text;
+					var risk_split = risk.split(" ");
+					var risk_num = risk_split[0];
+					initData(risk_num);
+				});
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(XMLHttpRequest.status);
@@ -147,8 +176,13 @@ function submitState(){
 			},
 			dataType : "json",
 			success : function(data, status) {
-				var riskState = JSON.parse(data.result);
-				
+				var response = data.result;
+				if(response == "success"){
+					alert("提交成功");
+				}
+				else{
+					alert("提交失败");
+				}
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(XMLHttpRequest.status);
