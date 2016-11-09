@@ -16,11 +16,8 @@
 			},
 			dataType : "json",
 			success : function(data, status) {
-				if (data.result == "fail")
-					alert("订购失败");
-				else {
-					alert("订购成功");
-				}
+				var a=eval("(" + data.result + ")");
+				alert(a.count);
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(XMLHttpRequest.status);

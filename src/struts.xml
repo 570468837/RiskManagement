@@ -13,6 +13,11 @@
 				<param name="excludeNullProperties">true</param>
 			</result>
 		</action>
+		<action name="user_*" class="nju.edu.action.UserAction" method="{1}">
+			<result type="json" name="{1}">
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="default" namespace="/" extends="struts-default">
