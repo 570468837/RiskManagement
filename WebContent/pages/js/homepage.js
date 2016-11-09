@@ -1,4 +1,4 @@
-function initData(){
+function initData(risk_num){
 	var riskItem = {
 		"riskid": "1.1.1",
 		"content": "由于人手不够，所以可能无法deanline之前完成该项开发",
@@ -15,14 +15,35 @@ function initData(){
 	document.getElementById("item_subscriber").innerText  =  riskItem.subscriber ;
 	document.getElementById("item_tracker").innerText  =  riskItem.tracker;
 
-	var riskState= {
+	/*var riskState= {
 		"riskid": "1.1.1",
 		"state": "依然存在，风险等级较高",
 		"description": "人手不够，无法从其余组调人，开发时间比较紧张"
-	}
+	} */
 	
-	document.getElementById("state_state").value  =  riskState.state;
-	document.getElementById("state_description").value  =  riskState.description;
+	//查询风险状态
+	$.ajax({
+			type : "POST",
+			url : "../json/risk_status.action",
+			data : {
+				id : risk_num
+			},
+			dataType : "json",
+			success : function(data, status) {
+				var riskState=JSON.parse(data.result);
+				document.getElementById("state_state").value  =  riskState.state;
+				document.getElementById("state_description").value  =  riskState.description;
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus);
+				alert("网络繁忙，请稍后再试");
+			}
+		});
+	
+	
+	
 	
 	var addRisk = document.getElementById("addRisk");
 	var addRequirement = document.getElementById("addRequirement");
@@ -105,7 +126,6 @@ function getTree() {
 			}
 		});
 		return returnData;
-		
 }
 
 function edit(){

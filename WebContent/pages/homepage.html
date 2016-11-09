@@ -44,9 +44,10 @@
 		$('#tree').on('nodeSelected', function(event, data) {
 			console.log(data);
 			console.log(data.text);
-			$('#tree').treeview('getParent', data);
+			var risk = data.text;
+			var risk_split = risk.split(" ");
+			var risk_num = risk_split[0];
 		});
-		
-		initData();
+		initData(risk_num);
 	</script>
 </html> 
