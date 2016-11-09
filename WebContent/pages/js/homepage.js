@@ -1,4 +1,10 @@
+var risk_num_global;
+
 function initData(risk_num){
+	if(risk_num == "init"){
+		return;
+	}
+	risk_num_global = risk_num;
 	var riskItem = {
 		"riskid": "1.1.1",
 		"content": "由于人手不够，所以可能无法deanline之前完成该项开发",
@@ -41,10 +47,7 @@ function initData(risk_num){
 				alert("网络繁忙，请稍后再试");
 			}
 		});
-	
-	
-	
-	
+		
 	var addRisk = document.getElementById("addRisk");
 	var addRequirement = document.getElementById("addRequirement");
 	var addIter = document.getElementById("addIter");
@@ -131,7 +134,27 @@ function getTree() {
 function edit(){
 	$("#state_state").attr("disabled",false);
 	$("#state_description").attr("disabled",false);
-	
-	
-	
+}
+
+function submitState(){
+	$.ajax({
+			type : "POST",
+			url : "../json/risk_edit.action",
+			data : {
+				id : risk_num_global,
+				state : document.getElementById("state_state").value,
+				description : document.getElementById("state_description").value
+			},
+			dataType : "json",
+			success : function(data, status) {
+				var riskState = JSON.parse(data.result);
+				
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus);
+				alert("网络繁忙，请稍后再试");
+			}
+		});
 }

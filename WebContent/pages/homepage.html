@@ -32,7 +32,7 @@
 					<div class="form_item"> 描述：<input type="text" id="state_description" disabled="true" style="width:500px"/></div>
 					
 					<button type="button" class="btn btn-primary button_edit" onclick="edit()">编辑</button>
-					<button type="button" class="btn btn-primary button_submit" >提交</button>
+					<button type="button" class="btn btn-primary button_submit" onclick="submitState()">提交</button>
 				</div>
 			</div>
 		</div>
@@ -47,7 +47,8 @@
 			var risk = data.text;
 			var risk_split = risk.split(" ");
 			var risk_num = risk_split[0];
+			initData(risk_num);
 		});
-		initData(risk_num);
+		initData("init");
 	</script>
 </html> 
