@@ -49,7 +49,7 @@ function initData(){
 function getTree() {
     /*var data = [
   {
-    "text": "迭代1",
+    
     "nodes": [
       {
         "text": "登录界面",
@@ -65,7 +65,8 @@ function getTree() {
       {
         "text": "首页界面"
       }
-    ]
+    ],
+	"text": "迭代1"
   },
   {
     "text": "迭代2"
@@ -82,13 +83,15 @@ function getTree() {
 ];
     return data;*/
 	
+
+	
 	var returnData="";
 	$.ajax({
 			type : "POST",
 			url : "../json/risk_tree.action",
 			dataType : "json",
 			success : function(data, status) {
-				var result=data.result;
+				var result=JSON.parse(data.result);
 				returnData = result;
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -99,6 +102,7 @@ function getTree() {
 			}
 		});
 		return returnData;
+		
 }
 
 function edit(){
