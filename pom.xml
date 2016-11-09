@@ -8,12 +8,12 @@
 	
 	<dependencies>
 		<!-- junit -->
-		<dependency>
+		<!--<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.9</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>-->
 
 		<!-- struts2依赖包 -->
 		<dependency>
