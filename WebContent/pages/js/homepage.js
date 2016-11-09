@@ -90,7 +90,6 @@ function getTree() {
 			success : function(data, status) {
 				var result=data.result;
 				returnData = result;
-				}
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(XMLHttpRequest.status);
