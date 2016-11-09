@@ -47,7 +47,7 @@ function initData(){
 
 
 function getTree() {
-    var data = [
+    /*var data = [
   {
     "text": "迭代1",
     "nodes": [
@@ -80,7 +80,26 @@ function getTree() {
     "text": "迭代5"
   }
 ];
-    return data;
+    return data;*/
+	
+	var returnData="";
+	$.ajax({
+			type : "POST",
+			url : "../json/risk_tree.action",
+			dataType : "json",
+			success : function(data, status) {
+				var result=data.result;
+				returnData = result;
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus);
+				alert("网络繁忙，请稍后再试");
+			}
+		});
+		return returnData;
 }
 
 function edit(){
