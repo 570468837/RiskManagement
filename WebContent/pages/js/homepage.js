@@ -85,7 +85,7 @@ function getTree() {
 	
 
 	
-	var returnData="";
+	var returnData;
 	$.ajax({
 			type : "POST",
 			url : "../json/risk_tree.action",
