@@ -6,6 +6,7 @@ public class UserAction {
 	private String result;
 	public String login() {
 		result="projectleader";
+		System.out.println("login");
 		return "login";
 	}
 	public String getResult() {

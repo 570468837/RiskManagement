@@ -28,10 +28,30 @@
 			}
 		});
 	}
+	function list() {
+		$.ajax({
+			type : "POST",
+			url : "json/ajax_list.action",
+			data : {
+				gjp : 123
+			},
+			dataType : "json",
+			success : function(data, status) {
+				var a=eval("(" + data.result + ")");
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus);
+				alert("网络繁忙，请稍后再试");
+			}
+		});
+	}
 </script>
 </head>
 <body>
 	<label>hello</label>
 	<button onclick="fuck()">tony</button>
+	<button onclick="list()">list</button>
 </body>
 </html>

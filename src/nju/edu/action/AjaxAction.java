@@ -1,5 +1,6 @@
 package nju.edu.action;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class AjaxAction{
 	private String result;
 	
 	public String fuck() {
-		HttpServletRequest request = ServletActionContext.getRequest(); // 获取request
+		HttpServletRequest request = ServletActionContext.getRequest(); // �峰��request
 		HttpSession session = request.getSession();
 		int gjp=Integer.parseInt(request.getParameter("gjp"));
 		
@@ -41,6 +42,26 @@ public class AjaxAction{
 			e.printStackTrace();
 		}
 		return "fuck";
+	}
+	
+	public String list() {
+		Map<String,ArrayList<Map<String,Object>>> map=new HashMap<>();
+		ArrayList<Map<String,Object>> list=new ArrayList<>();
+		Map<String,Object> iter1 = new HashMap<>();
+		iter1.put("text", "迭代1");
+		Map<String,Object> iter2 = new HashMap<>();
+		iter2.put("text", "迭代2");
+		list.add(iter1);
+		list.add(iter2);
+		map.put("content", list);
+		try {
+			result=JSONUtil.serialize(map);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "list";
 	}
 	
 	public String getResult() {
