@@ -17,7 +17,7 @@
 			<span style="display:block; margin-top:15px">用户组：
 				<select name="select" id="user_group" style="width:135px">
 					<option value="developer">开发人员</option>
-					<option value="admin">项目负责人</option>
+					<option value="projectleader">项目负责人</option>
 				</select>
 			</span>
 			<div style="text-align:center"><button type="button" class="btn btn-primary loginButton" onclick="login()">登录</button></div>
@@ -38,10 +38,12 @@
 		
 		$.ajax({
 			type : "POST",
-			url : "。。json/user_login.action",
+			url : "../json/user_login.action",
 			data : {
 				username : user,
-				password : password
+				password : password,
+				role : user_group
+				
 			},
 			dataType : "json",
 			success : function(data, status) {
@@ -51,8 +53,8 @@
 					return;
 				}
 				else{
-					//projectleader, developer
-					window.location.href="homepage.html?role="+result; 
+					//success
+					window.location.href="homepage.html?role="+user_group; 
 					
 				}
 			},

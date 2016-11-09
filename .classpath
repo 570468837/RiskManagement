@@ -41,5 +41,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ognl-3.0.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-core-2.3.24.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xwork-core-2.3.24.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.39-bin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
