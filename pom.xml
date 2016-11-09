@@ -7,31 +7,30 @@
 	<packaging>war</packaging>
 	
 	<dependencies>
-        <!-- common -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-	<dependency>  
-        	<groupId>org.apache.struts</groupId>  
-        	<artifactId>struts2-core</artifactId>  
-        	<version>2.3.14</version>  
-    	</dependency>  
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
-        </dependency>
-      
-       
-    </dependencies>
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.9</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- struts2依赖包 -->
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>2.3.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+	</dependencies>
 	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -50,9 +49,6 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-					<compilerArguments>
-						<extdirs>WebContent/WEB-INF/lib</extdirs>
-					</compilerArguments>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -65,4 +61,33 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<repositories>
+		<repository>
+			<id>repo-mirror</id>
+			<name> Maven China Mirror</name>
+			<url>http://maven.net.cn/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>plugin-repo-mirror</id>
+			<name> Maven China Mirror</name>
+			<url>http://maven.net.cn/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	
 </project>
