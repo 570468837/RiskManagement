@@ -1,15 +1,15 @@
 function initData(){
 	var requirements = [
-		{"content": "µü´ú1-µÇÂ¼½çÃæ"},
-		{"content": "µü´ú1-Ê×Ò³"},
-		{"content": "µü´ú1-¸öÈËÖĞĞÄ"},
-		{"content": "µü´ú1-ÉÌÆ·ÏêÇéÒ³Ãæ"},
-		{"content": "µü´ú2-Ö§¸¶Ò³Ãæ"},
-		{"content": "µü´ú2-ÎïÁ÷Ñ¡ÔñÒ³Ãæ"},
-		{"content": "µü´ú2-ºÏÍ¬´òÓ¡"},
-		{"content": "µü´ú3-¸öĞÔ»¯ÍÆ¼öÒ³Ãæ"},
-		{"content": "µü´ú3-¹ºÎï³µÍ¬²½"},
-		{"content": "µü´ú3-Mobile app¿ª·¢"},
+		{"content": "è¿­ä»£1-ç™»å½•ç•Œé¢"},
+		{"content": "è¿­ä»£1-é¦–é¡µ"},
+		{"content": "è¿­ä»£1-ä¸ªäººä¸­å¿ƒ"},
+		{"content": "è¿­ä»£1-å•†å“è¯¦æƒ…é¡µé¢"},
+		{"content": "è¿­ä»£2-æ”¯ä»˜é¡µé¢"},
+		{"content": "è¿­ä»£2-ç‰©æµé€‰æ‹©é¡µé¢"},
+		{"content": "è¿­ä»£2-åˆåŒæ‰“å°"},
+		{"content": "è¿­ä»£3-ä¸ªæ€§åŒ–æ¨èé¡µé¢"},
+		{"content": "è¿­ä»£3-è´­ç‰©è½¦åŒæ­¥"},
+		{"content": "è¿­ä»£3-Mobile appå¼€å‘"},
 	];
 	var select_requirement = document.getElementById('select_requirement');
 	for(var i=0; i<requirements.length;i++){

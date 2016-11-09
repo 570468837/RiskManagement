@@ -3,23 +3,24 @@
 	<link  href="./css/login.css" rel="stylesheet"/>
 	<link href="./css/bootstrap.css" rel="stylesheet"/>
 	<script src="./js/jquery.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 </head>
 
 <body>
 	<div class="mainDiv">
-		<p style="text-align:center; margin-top:5%; font-size:22px">Èí¼şÏîÄ¿·çÏÕ¹ÜÀíÏµÍ³</p>
+		<p style="text-align:center; margin-top:5%; font-size:22px">è½¯ä»¶é¡¹ç›®é£é™©ç®¡ç†ç³»ç»Ÿ</p>
 		<div class="loginDiv">
-			<p style="text-align:center; margin-top:8%;">ÓÃ »§ µÇ Â¼</p>
-			<span style="display:block; margin-top:30px">ÓÃ»§£º <input type="text" id="user"></input></span>
-			<span style="display:block; margin-top:15px">ÃÜÂë£º <input type="password" id="password"></input></span>
-			<span style="display:block; margin-top:15px">ÓÃ»§×é£º
+			<p style="text-align:center; margin-top:8%;">ç”¨ æˆ· ç™» å½•</p>
+			<span style="display:block; margin-top:30px">ç”¨æˆ·ï¼š <input type="text" id="user"></input></span>
+			<span style="display:block; margin-top:15px">å¯†ç ï¼š <input type="password" id="password"></input></span>
+			<span style="display:block; margin-top:15px">ç”¨æˆ·ç»„ï¼š
 				<select name="select" id="user_group" style="width:135px">
-					<option value="developer">¿ª·¢ÈËÔ±</option>
-					<option value="admin">¹ÜÀíÔ±</option>
+					<option value="developer">å¼€å‘äººå‘˜</option>
+					<option value="admin">é¡¹ç›®è´Ÿè´£äºº</option>
 				</select>
 			</span>
-			<div style="text-align:center"><button type="button" class="btn btn-primary loginButton" onclick="login()">µÇÂ¼</button></div>
+			<div style="text-align:center"><button type="button" class="btn btn-primary loginButton" onclick="login()">ç™»å½•</button></div>
 		</div>
 	</div>
 
@@ -31,7 +32,7 @@
 		var password = document.getElementById("password").value;
 		var user_group = document.getElementById("user_group").value;
 		if (user == "" || password == ""){
-			alert("ÓÃ»§Ãû»òÃÜÂë²»ÄÜÎª¿Õ£¡");
+			alert("ç”¨æˆ·åæˆ–å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 			return;
 		}
 		
@@ -46,7 +47,7 @@
 			success : function(data, status) {
 				var result=data.result;
 				if(result == "failure"){
-					alert("ÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
+					alert("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼");
 					return;
 				}
 				else{
@@ -59,7 +60,7 @@
 				alert(XMLHttpRequest.status);
 				alert(XMLHttpRequest.readyState);
 				alert(textStatus);
-				alert("ÍøÂç·±Ã¦£¬ÇëÉÔºóÔÙÊÔ");
+				alert("ç½‘ç»œç¹å¿™ï¼Œè¯·ç¨åå†è¯•");
 			}
 		});
 

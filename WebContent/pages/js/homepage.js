@@ -1,12 +1,12 @@
 function initData(){
 	var riskItem = {
 		"riskid": "1.1.1",
-		"content": "ÓÉÓÚÈËÊÖ²»¹»£¬ËùÒÔ¿ÉÄÜÎŞ·¨deanlineÖ®Ç°Íê³É¸ÃÏî¿ª·¢",
+		"content": "ç”±äºäººæ‰‹ä¸å¤Ÿï¼Œæ‰€ä»¥å¯èƒ½æ— æ³•deanlineä¹‹å‰å®Œæˆè¯¥é¡¹å¼€å‘",
 		"possibility": "high",
 		"impact": "high",
-		"trigger": "2016Äê12ÔÂ1ÈÕ",
-		"subscriber": "¹ù½¨Åó",
-		"tracker": "¹ù½¨Åó"
+		"trigger": "2016å¹´12æœˆ1æ—¥",
+		"subscriber": "éƒ­å»ºæœ‹",
+		"tracker": "éƒ­å»ºæœ‹"
 	}
 	document.getElementById("item_content").innerText  =  riskItem.content ;
 	document.getElementById("item_possibility").innerText  =  riskItem.possibility ;
@@ -17,8 +17,8 @@ function initData(){
 
 	var riskState= {
 		"riskid": "1.1.1",
-		"state": "ÒÀÈ»´æÔÚ£¬·çÏÕµÈ¼¶½Ï¸ß",
-		"description": "ÈËÊÖ²»¹»£¬ÎŞ·¨´ÓÆäÓà×éµ÷ÈË£¬¿ª·¢Ê±¼ä±È½Ï½ôÕÅ"
+		"state": "ä¾ç„¶å­˜åœ¨ï¼Œé£é™©ç­‰çº§è¾ƒé«˜",
+		"description": "äººæ‰‹ä¸å¤Ÿï¼Œæ— æ³•ä»å…¶ä½™ç»„è°ƒäººï¼Œå¼€å‘æ—¶é—´æ¯”è¾ƒç´§å¼ "
 	}
 	
 	document.getElementById("state_state").value  =  riskState.state;
@@ -29,35 +29,35 @@ function initData(){
 function getTree() {
     var data = [
   {
-    "text": "µü´ú1",
+    "text": "è¿­ä»£1",
     "nodes": [
       {
-        "text": "µÇÂ¼½çÃæ",
+        "text": "ç™»å½•ç•Œé¢",
         "nodes": [
           {
-            "text": "1.1.1 ·çÏÕ1"
+            "text": "1.1.1 é£é™©1"
           },
           {
-            "text": "1.1.2 ·çÏÕ2"
+            "text": "1.1.2 é£é™©2"
           }
         ]
       },
       {
-        "text": "Ê×Ò³½çÃæ"
+        "text": "é¦–é¡µç•Œé¢"
       }
     ]
   },
   {
-    "text": "µü´ú2"
+    "text": "è¿­ä»£2"
   },
   {
-    "text": "µü´ú3"
+    "text": "è¿­ä»£3"
   },
   {
-    "text": "µü´ú4"
+    "text": "è¿­ä»£4"
   },
   {
-    "text": "µü´ú5"
+    "text": "è¿­ä»£5"
   }
 ];
     return data;

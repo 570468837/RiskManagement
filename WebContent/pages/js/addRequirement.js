@@ -1,8 +1,8 @@
 function initData(){
 	var iters = [
-		{"content": "µü´ú1"},
-		{"content": "µü´ú2"},
-		{"content": "µü´ú3"}
+		{"content": "è¿­ä»£1"},
+		{"content": "è¿­ä»£2"},
+		{"content": "è¿­ä»£3"}
 	];
 	var select_iter = document.getElementById('select_iter');
 	for(var i=0; i<iters.length;i++){
