@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONUtil;
 
@@ -19,6 +23,7 @@ public class RiskAction {
 		try {
 			AllRisks risks=riskDB.getAllRisks();
 			result=JsonUtils.toJSON(risks);
+			System.out.println(result);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -27,11 +32,13 @@ public class RiskAction {
 	}
 	
 	public String status() {
+		HttpServletRequest request = ServletActionContext.getRequest(); 
+		HttpSession session = request.getSession();
+		String id=request.getParameter("id");
 		RiskStatusDB riskStatusDB = new RiskStatusDB();
-		
 		try {
-			
-			result=JsonUtils.toJSON(risks);
+			result=JsonUtils.toJSON(riskStatusDB.getRiskStatusByRisk(id));
+			System.out.println(result);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

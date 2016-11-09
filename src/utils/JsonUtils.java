@@ -18,27 +18,45 @@ public class JsonUtils {
 	
 	public static String toJSON(List list) {
 		JSONArray arr = new JSONArray();
+		for(Object object: list){
+			arr.put(toJSON(object));
+		}
+		return arr.toString();
 	}
 	
-	public static String toJSON(Project project) {
+	private static JSONObject toJSON(Object obj) {
+		if(obj instanceof Project){
+			return toJSON((Project)obj);
+		}else if(obj instanceof Requirement){
+			return toJSON((Requirement)obj);
+		}else if(obj instanceof Risk){
+			return toJSON((Risk)obj);
+		}else if(obj instanceof RiskStatus){
+			return toJSON((RiskStatus)obj);
+		}else{
+			return null;
+		}
+	}
+	
+	public static JSONObject toJSON(Project project) {
 		JSONObject obj = new JSONObject();
 		obj.put("id", project.getId());
 		obj.put("content", project.getName());
 		obj.put("description", project.getDescription());
 		obj.put("ownerid", project.getOwnerId());
-		return obj.toString();
+		return obj;
 	}
 	
-	public static String toJSON(Requirement req) {
+	public static JSONObject toJSON(Requirement req) {
 		JSONObject obj = new JSONObject();
 		obj.put("id", req.getId());
 		obj.put("name", req.getName());
 		obj.put("description", req.getDescription());
 		obj.put("content", req.getProjectName() + "-" + req.getName());
-		return obj.toString();
+		return obj;
 	}
 	
-	public static String toJSON(Risk risk) {
+	public static JSONObject toJSON(Risk risk) {
 		JSONObject obj = new JSONObject();
 		obj.put("id", risk.getId());
 		obj.put("name", risk.getName());
@@ -52,10 +70,10 @@ public class JsonUtils {
 		obj.put("tracker", risk.getTracker());
 		obj.put("requirementid", risk.getRequirementId());
 		obj.put("riskid", risk.getYaoId());
-		return obj.toString();
+		return obj;
 	}
 	
-	public static String toJSON(RiskStatus status) {
+	public static JSONObject toJSON(RiskStatus status) {
 		JSONObject obj = new JSONObject();
 		obj.put("id", status.getId());
 		obj.put("state", status.getState());
@@ -64,7 +82,7 @@ public class JsonUtils {
 		obj.put("createTime", status.getCreateTime());
 		obj.put("recorderid", status.getRecorderId());
 		obj.put("riskid", status.getRiskYaoId());
-		return obj.toString();
+		return obj;
 	}
 	
 	public static String toJSON(AllRisks risks) {
@@ -72,14 +90,11 @@ public class JsonUtils {
 		for(ProjectDetail project: risks.getProjects()) {
 			arr.put(toJSONsp(project));
 		}
-		JSONObject obj=new JSONObject();
-		obj.put("content", arr);
-		return obj.toString();
+		return arr.toString();
 	}
 	
 	private static JSONObject toJSONsp(ProjectDetail project) {
 		JSONObject obj = new JSONObject();
-		obj.put("projectid", project.getId());
 		obj.put("text", project.getName());
 		JSONArray arr = new JSONArray();
 		for(RequirementDetail req: project.getRequirements()) {
@@ -91,7 +106,6 @@ public class JsonUtils {
 	
 	private static JSONObject toJSONsp(RequirementDetail req) {
 		JSONObject obj = new JSONObject();
-		obj.put("requirementid", req.getId());
 		obj.put("text", req.getName());
 		JSONArray arr = new JSONArray();
 		for(Risk risk: req.getRisks()) {
@@ -104,7 +118,6 @@ public class JsonUtils {
 	private static JSONObject toJSONsp(Risk risk) {
 		JSONObject obj = new JSONObject();
 		obj.put("text", risk.getYaoId() + "-" + risk.getContent());
-		obj.put("riskid", risk.getId());
 		return obj;
 	}
 }

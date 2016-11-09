@@ -93,6 +93,9 @@ function getTree() {
 			success : function(data, status) {
 				var result=JSON.parse(data.result);
 				returnData = result;
+				$('#tree').treeview({
+					data: returnData
+				});
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(XMLHttpRequest.status);
