@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.multipart.maxSize" value="104857600"/>
+	
+	<package name="json" namespace="/json" extends="json-default">
+		<action name="ajax_*" class="nju.edu.action.AjaxAction" method="{1}">
+			<result type="json" name="{1}">
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="default" namespace="/" extends="struts-default">
+
+		<action name="index" class="nju.edu.action.IndexAction" method="execute">
+			<result name="success">/fuck.jsp</result>
+		</action>
+
+	</package>
+
+
+</struts>

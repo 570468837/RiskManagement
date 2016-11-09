@@ -1,0 +1,39 @@
+<html>
+<head>
+	<link  href="./css/login.css" rel="stylesheet"/>
+	<link href="./css/bootstrap.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+	<div class="mainDiv">
+		<p style="text-align:center; margin-top:5%; font-size:22px">软件项目风险管理系统</p>
+		<div class="loginDiv">
+			<p style="text-align:center; margin-top:8%;">用 户 登 录</p>
+			<span style="display:block; margin-top:30px">用户： <input type="text" id="user"></input></span>
+			<span style="display:block; margin-top:15px">密码： <input type="password" id="password"></input></span>
+			<span style="display:block; margin-top:15px">用户组：
+				<select name="select" id="user_group" style="width:135px">
+					<option value="developer">开发人员</option>
+					<option value="admin">管理员</option>
+				</select>
+			</span>
+			<div style="text-align:center"><button type="button" class="btn btn-primary loginButton" onclick="login()">登录</button></div>
+		</div>
+	</div>
+
+</body>
+
+<script>
+	function login(){
+		var user = document.getElementById("user").value;
+		var password = document.getElementById("password").value;
+		var user_group = document.getElementById("user_group").value;
+		if (user == "" || password == ""){
+			alert("用户名或密码不能为空！");
+			return;
+		}
+	}
+</script>
+
+</html>
