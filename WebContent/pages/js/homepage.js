@@ -92,7 +92,7 @@ function initData(risk_num){
 
 
 function getTree() {
-    /*var data = [
+    var data_a = [
   {
     
     "nodes": [
@@ -100,10 +100,10 @@ function getTree() {
         "text": "登录界面",
         "nodes": [
           {
-            "text": "1.1.1 风险1"
+            "text": "1.1.1-风险1"
           },
           {
-            "text": "1.1.2 风险2"
+            "text": "1.1.2-风险2"
           }
         ]
       },
@@ -126,39 +126,23 @@ function getTree() {
     "text": "迭代5"
   }
 ];
-    return data;*/
-	
-
-	
-	var returnData;
-	$.ajax({
-			type : "POST",
-			url : "../json/risk_tree.action",
-			dataType : "json",
-			success : function(data, status) {
-				var result=JSON.parse(data.result);
-				returnData = result;
-				$('#tree').treeview({
-					data: returnData
+	$('#tree').treeview({
+					data: data_a
 				});
-				$('#tree').on('nodeSelected', function(event, data) {
+				
+	$('#tree').on('nodeSelected', function(event, data) {
 					console.log(data.text);
-					if(data.nodes == null){
+					if(data.nodes == null &&  "0" <= data.text.charAt(0) && data.text.charAt(0) <= "9" && data.text.indexOf(".") >= 0){
 						var risk = data.text;
 						var risk_split = risk.split("-");
 						var risk_num = risk_split[0];
+						console.log(risk_num);
 						initData(risk_num);
 					}
 				});
-			},
-			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(XMLHttpRequest.status);
-				alert(XMLHttpRequest.readyState);
-				alert(textStatus);
-				alert("网络繁忙，请稍后再试");
-			}
-		});
-		return returnData;
+
+	
+	
 }
 
 function edit(){
