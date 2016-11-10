@@ -32,7 +32,7 @@ function add(){
 			url : "../json/req_add.action",
 			data : {
 				iterid : document.getElementById("select_iter").value,
-				description : document.getElementById("requirement_description").value
+				description : document.getElementById("requirement_textarea").value
 			},
 			dataType : "json",
 			success : function(data, status) {
