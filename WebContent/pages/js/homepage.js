@@ -93,6 +93,7 @@ function initData(risk_num){
 
 
 function getTree() {
+	/*
     var data_a = [
   {
     
@@ -127,11 +128,19 @@ function getTree() {
     "text": "迭代5"
   }
 ];
-	$('#tree').treeview({
-					data: data_a
+*/
+	var returnData;
+	$.ajax({
+			type : "POST",
+			url : "../json/risk_tree.action",
+			dataType : "json",
+			success : function(data, status) {
+				var result=JSON.parse(data.result);
+				returnData = result;
+				$('#tree').treeview({
+					data: returnData
 				});
-				
-	$('#tree').on('nodeSelected', function(event, data) {
+				$('#tree').on('nodeSelected', function(event, data) {
 					console.log(data.text);
 					if(data.nodes == null &&  "0" <= data.text.charAt(0) && data.text.charAt(0) <= "9" && data.text.indexOf(".") >= 0){
 						var risk = data.text;
@@ -141,9 +150,15 @@ function getTree() {
 						initData(risk_num);
 					}
 				});
-
-	
-	
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus);
+				alert("网络繁忙，请稍后再试");
+			}
+		});
+		return returnData;
 }
 
 function edit(){
