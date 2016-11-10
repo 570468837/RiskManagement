@@ -51,7 +51,5 @@
 </head>
 <body>
 	<label>hello</label>
-	<button onclick="fuck()">tony</button>
-	<button onclick="list()">list</button>
 </body>
 </html>
