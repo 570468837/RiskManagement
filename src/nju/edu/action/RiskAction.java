@@ -3,6 +3,7 @@ package nju.edu.action;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONUtil;
+import org.json.JSONObject;
 
 import db.*;
 import model.AllRisks;
@@ -38,7 +40,16 @@ public class RiskAction {
 		String id=request.getParameter("id");
 		RiskStatusDB riskStatusDB = new RiskStatusDB();
 		try {
-			result=JsonUtils.toJSON(riskStatusDB.getRiskStatusByYaoId(id));
+			List<RiskStatus> statusList=riskStatusDB.getRiskStatusByYaoId(id);
+			if(statusList.size()>0){
+				RiskStatus status=riskStatusDB.getRiskStatusByYaoId(id).get(0);
+				result=JsonUtils.toJSON(status).toString();
+			}else{
+				JSONObject obj = new JSONObject();
+				obj.put("state", "");
+				obj.put("description", "");
+				result=obj.toString();
+			}
 			System.out.println(result);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
