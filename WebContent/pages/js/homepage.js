@@ -2,6 +2,7 @@ var risk_num_global;
 
 function initData(risk_num){
 	if(risk_num == "init"){
+		risk_num_global = risk_num;
 		return;
 	}
 	risk_num_global = risk_num;
@@ -146,11 +147,20 @@ function getTree() {
 }
 
 function edit(){
+	if(risk_num_global == "init"){
+		alert("请先选中左侧风险。");
+		return;
+	}
 	$("#state_state").attr("disabled",false);
 	$("#state_description").attr("disabled",false);
 }
 
 function submitState(){
+	if(risk_num_global == "init"){
+		alert("请先选中左侧风险。");
+		return;
+	}
+	
 	$.ajax({
 			type : "POST",
 			url : "../json/risk_edit.action",
