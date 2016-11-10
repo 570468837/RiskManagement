@@ -27,7 +27,7 @@ public class DatabaseUtils {
 			prop.load(fis);
 			*/
 			driver = "com.mysql.jdbc.Driver";
-			url = "127.0.0.1/riskManagement";					//prop.getProperty("mysql_url");
+			url = "114.115.222.240:3306/riskManagement";					//prop.getProperty("mysql_url");
 			if(!url.startsWith("jdbc:mysql://")){
 				url = "jdbc:mysql://" + url;
 			}
