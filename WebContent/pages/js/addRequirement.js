@@ -31,7 +31,7 @@ function add(){
 			type : "POST",
 			url : "../json/req_add.action",
 			data : {
-				iterid : risk_num_global,
+				iterid : document.getElementById("select_iter").value,
 				description : document.getElementById("requirement_description").value
 			},
 			dataType : "json",
