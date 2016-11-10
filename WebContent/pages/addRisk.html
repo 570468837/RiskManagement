@@ -22,7 +22,7 @@
 			</select>
 			</div>
 			<div class="riskitem">影响程度：
-			<select id="possibility">
+			<select id="impact">
 				<option value ="high">高</option>
 				<option value ="middle">中</option>
 				<option value="low">低</option>
@@ -31,7 +31,7 @@
 			<div class="riskitem">触发器/阈值：<input id="trigger" type="text" style="width:200px"></input> </div>
 			<div class="riskitem">提交者：<input id="subscriber" type="text" style="width:100px"></input> </div>
 			<div class="riskitem">跟踪者：<input id="tracker" type="text" style="width:100px"></input> </div>
-			<div><button type="button" class="btn btn-primary riskitem" style="margin-left:360px">添加</button>
+			<div><button type="button" class="btn btn-primary riskitem" style="margin-left:360px" onclick="add()">添加</button>
 			</div>
 		</div>
 	</div>

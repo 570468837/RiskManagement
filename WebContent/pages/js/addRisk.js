@@ -32,3 +32,35 @@ function initData(){
 		});
 }
 
+function add(){
+	$.ajax({
+			type : "POST",
+			url : "../json/risk_add.action",
+			data : {
+				reqid : document.getElementById('select_requirement').value,
+				content : document.getElementById("content").value,
+				possibility : document.getElementById("possibility").value,
+				impact : document.getElementById("impact").value,
+				trigger : document.getElementById("trigger").value,
+				subscriber : document.getElementById("subscriber").value,
+				tracker : document.getElementById("tracker").value
+			},
+			dataType : "json",
+			success : function(data, status) {
+				var response = data.result;
+				if(response == "success"){
+					alert("添加成功");
+				}
+				else{
+					alert("添加失败");
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus);
+				alert("网络繁忙，请稍后再试");
+			}
+		});
+}
+
