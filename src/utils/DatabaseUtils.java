@@ -46,7 +46,7 @@ public class DatabaseUtils {
 	public static Connection getConnection(){
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection(url, user, password);
+			conn = DriverManager.getConnection(url, user);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
