@@ -29,8 +29,8 @@ function initData(risk_num){
 				document.getElementById("item_possibility").innerText  =  riskItem.possibility ;
 				document.getElementById("item_impact").innerText  =  riskItem.impact ;
 				document.getElementById("item_trigger").innerText  =  riskItem.trigger ;
-				document.getElementById("item_subscriber").innerText  =  riskItem.subscriber ;
-				document.getElementById("item_tracker").innerText  =  riskItem.tracker;
+				document.getElementById("item_subscriber").innerText  =  riskItem.subscriberid ;
+				document.getElementById("item_tracker").innerText  =  riskItem.trackerid;
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(XMLHttpRequest.status);
