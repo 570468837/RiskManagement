@@ -16,6 +16,8 @@ import org.json.JSONObject;
 
 import db.*;
 import model.AllRisks;
+import model.Project;
+import model.Risk;
 import model.RiskStatus;
 import utils.JsonUtils;
 
@@ -64,7 +66,12 @@ public class RiskAction {
 		String id=request.getParameter("id");
 		RiskDB riskDB = new RiskDB();
 		try {
-			result=JsonUtils.toJSON(riskDB.getRiskByYaoId(id)).toString();
+			Risk risk=riskDB.getRiskByYaoId(id);
+			if(risk==null){
+				risk=new Risk("","","","","","","","","");
+			}
+			result=JsonUtils.toJSON(risk).toString();
+			
 			System.out.println(result);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -77,8 +84,8 @@ public class RiskAction {
 		HttpServletRequest request = ServletActionContext.getRequest(); 
 		HttpSession session = request.getSession();
 		String id=request.getParameter("id");
-		String state=request.getParameter("status");
-		String description=request.getParameter("status");
+		String state=request.getParameter("state");
+		String description=request.getParameter("description");
 		RiskStatus status=new RiskStatus(null,state,description,id,null,null);
 		RiskStatusDB riskStatusDB = new RiskStatusDB();
 		try {
@@ -90,7 +97,31 @@ public class RiskAction {
 			e1.printStackTrace();
 			result="failure";
 		}
-		return "status";
+		return "edit";
+	}
+	
+	public String add() {
+		HttpServletRequest request = ServletActionContext.getRequest(); 
+		HttpSession session = request.getSession();
+		String reqid=request.getParameter("reqid");
+		String content=request.getParameter("content");
+		String possibility=request.getParameter("possibility");
+		String impact=request.getParameter("impact");
+		String trigger=request.getParameter("trigger");
+		String subscriber=request.getParameter("subscriber");
+		String tracker=request.getParameter("tracker");
+		RiskDB riskDB=new RiskDB();
+		try {
+			Risk risk=new Risk(null,"",content,possibility,impact,trigger,subscriber,tracker,reqid);
+			riskDB.insertRisk(risk);
+			System.out.println("insert risk");
+			result="success";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result="failure";
+			e.printStackTrace();
+		}
+		return "add";
 	}
 	
 	public String getResult() {

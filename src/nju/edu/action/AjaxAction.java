@@ -21,7 +21,7 @@ public class AjaxAction{
 	private String result;
 	
 	public String fuck() {
-		HttpServletRequest request = ServletActionContext.getRequest(); // �峰��request
+		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		int gjp=Integer.parseInt(request.getParameter("gjp"));
 		

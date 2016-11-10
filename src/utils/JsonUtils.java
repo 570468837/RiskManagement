@@ -41,7 +41,7 @@ public class JsonUtils {
 	public static JSONObject toJSON(Project project) {
 		JSONObject obj = new JSONObject();
 		obj.put("id", project.getId());
-		obj.put("content", project.getName());
+		obj.put("name", project.getName());
 		obj.put("description", project.getDescription());
 		obj.put("ownerid", project.getOwnerId());
 		return obj;

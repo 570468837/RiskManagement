@@ -23,6 +23,16 @@
 				<param name="excludeNullProperties">true</param>
 			</result>
 		</action>
+		<action name="iter_*" class="nju.edu.action.IterationAction" method="{1}">
+			<result type="json" name="{1}">
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<action name="req_*" class="nju.edu.action.RequirementAction" method="{1}">
+			<result type="json" name="{1}">
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="default" namespace="/" extends="struts-default">
