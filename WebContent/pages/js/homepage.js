@@ -142,12 +142,13 @@ function getTree() {
 					data: returnData
 				});
 				$('#tree').on('nodeSelected', function(event, data) {
-					console.log(data);
 					console.log(data.text);
-					var risk = data.text;
-					var risk_split = risk.split(" ");
-					var risk_num = risk_split[0];
-					initData(risk_num);
+					if(data.nodes == null){
+						var risk = data.text;
+						var risk_split = risk.split("-");
+						var risk_num = risk_split[0];
+						initData(risk_num);
+					}
 				});
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
