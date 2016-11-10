@@ -33,7 +33,7 @@ public class DatabaseUtils {
 			}
 			url += "?characterEncoding=utf8&useSSL=true";
 			user = "root";			//prop.getProperty("user");
-			password = "";			//prop.getProperty("password");
+			password = "123";			//prop.getProperty("password");
 			
 			Class.forName(driver);
 			
@@ -46,7 +46,7 @@ public class DatabaseUtils {
 	public static Connection getConnection(){
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection(url, user);
+			conn = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
