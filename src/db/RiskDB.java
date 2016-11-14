@@ -13,7 +13,7 @@ import utils.DatabaseUtils;
 
 public class RiskDB {
 
-	static String sql_insert_risk = "insert into `risk` values(null, ?, ?, ?, ?, ?, ?, ?, ?, null);";
+	static String sql_insert_risk = "insert into `risk` values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	static String sql_get_by_id = "select * from `risk` where id = ?;";
 	static String sql_get_by_requirement = "select * "
 										 + "from `risk` r, `account` a1, `account` a2 "
@@ -34,6 +34,7 @@ public class RiskDB {
 		pstmt.setString(6, risk.getSubmitterId());
 		pstmt.setString(7, risk.getTracerId());
 		pstmt.setString(8, risk.getRequirementId());
+		pstmt.setString(9, "1.1.2");
 		pstmt.executeUpdate();
 		pstmt.close();
 		DatabaseUtils.closeConnection(conn);
