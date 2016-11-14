@@ -89,11 +89,11 @@ public class RiskAction {
 		RiskStatus status=new RiskStatus(null,state,description,id,null,null);
 		RiskStatusDB riskStatusDB = new RiskStatusDB();
 		try {
-			if(id.equals("1.1.2")){
-				riskStatusDB.insertRiskStatus(status);
-			}else{
+			//if(id.equals("1.1.2")){
+				//riskStatusDB.insertRiskStatus(status);
+			//}else{
 				riskStatusDB.updateRiskStatus(status);
-			}
+			//}
 			
 			
 			System.out.println("update status");
